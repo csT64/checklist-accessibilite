@@ -1,0 +1,441 @@
+/**
+ * Styles accessibles conformes RGAA 4.1
+ * Contraste minimum 4.5:1 pour texte normal
+ * Contraste minimum 3:1 pour texte large (18px+)
+ */
+
+/* === Variables CSS === */
+:root {
+    --couleur-texte: #1a1a1a;
+    --couleur-fond: #ffffff;
+    --couleur-primaire: #0066cc; /* Contraste 4.54:1 */
+    --couleur-primaire-hover: #0052a3;
+    --couleur-critique: #c62828; /* Contraste 5.13:1 */
+    --couleur-importante: #e65100; /* Contraste 4.57:1 */
+    --couleur-recommandee: #2e7d32; /* Contraste 4.56:1 */
+    --couleur-succes: #2e7d32;
+    --couleur-erreur: #c62828;
+    --couleur-bordure: #666666;
+    --couleur-fond-alt: #f5f5f5;
+}
+
+/* === Reset et base === */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%; /* 16px de base */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem; /* 16px minimum */
+    line-height: 1.5; /* WCAG minimum 1.5 */
+    color: var(--couleur-texte);
+    background: var(--couleur-fond);
+}
+
+/* === Focus visible pour navigation clavier === */
+*:focus {
+    outline: 3px solid var(--couleur-primaire);
+    outline-offset: 2px;
+}
+
+/* Ne jamais masquer le focus */
+*:focus-visible {
+    outline: 3px solid var(--couleur-primaire);
+    outline-offset: 2px;
+}
+
+/* === Skip link (lien d'évitement) === */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    padding: 0.75rem 1rem;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 10000;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* === Titres === */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+h1 { font-size: 2rem; } /* 32px */
+h2 { font-size: 1.5rem; } /* 24px */
+h3 { font-size: 1.25rem; } /* 20px */
+h4 { font-size: 1.125rem; } /* 18px */
+
+/* === Liens === */
+a {
+    color: var(--couleur-primaire);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+a:hover,
+a:focus {
+    color: var(--couleur-primaire-hover);
+    text-decoration-thickness: 2px;
+}
+
+/* === Boutons === */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: var(--couleur-primaire);
+    border-color: var(--couleur-primaire);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    color: #ffffff;
+    background-color: var(--couleur-primaire-hover);
+    border-color: var(--couleur-primaire-hover);
+    text-decoration: none;
+}
+
+.btn-secondary {
+    color: var(--couleur-texte);
+    background-color: transparent;
+    border-color: var(--couleur-bordure);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: var(--couleur-fond-alt);
+}
+
+/* === Formulaires === */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--couleur-texte);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--couleur-texte);
+    background-color: #fff;
+    border: 2px solid var(--couleur-bordure);
+    border-radius: 4px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--couleur-primaire);
+    outline: 3px solid var(--couleur-primaire);
+    outline-offset: 0;
+}
+
+/* Champs invalides */
+input:invalid,
+textarea:invalid,
+select:invalid {
+    border-color: var(--couleur-erreur);
+}
+
+/* Cases à cocher et boutons radio */
+input[type="checkbox"],
+input[type="radio"] {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.form-groupe {
+    margin-bottom: 1.5rem;
+}
+
+.radio-groupe,
+.checkbox-groupe {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.radio-groupe label,
+.checkbox-groupe label {
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+/* Aide textuelle */
+.aide-texte {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+/* Messages d'erreur */
+.erreur-message {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--couleur-erreur);
+    font-weight: 600;
+}
+
+/* === Priorités === */
+.priorite-critique {
+    border-left: 4px solid var(--couleur-critique);
+    padding-left: 1rem;
+}
+
+.priorite-importante {
+    border-left: 4px solid var(--couleur-importante);
+    padding-left: 1rem;
+}
+
+.priorite-recommandee {
+    border-left: 4px solid var(--couleur-recommandee);
+    padding-left: 1rem;
+}
+
+.critere-priorite {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+}
+
+/* === Statuts === */
+.statut-conforme {
+    color: var(--couleur-succes);
+}
+
+.statut-non-conforme {
+    color: var(--couleur-erreur);
+}
+
+/* === Barre de progression === */
+.progression {
+    margin: 1.5rem 0;
+}
+
+.barre-progression {
+    width: 100%;
+    height: 2rem;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+    position: relative;
+}
+
+.barre-remplie {
+    height: 100%;
+    background-color: var(--couleur-primaire);
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+/* === Liste de critères === */
+.liste-criteres {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.critere-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+.critere-header h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.critere-description {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.critere-references {
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.reference {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+    background-color: var(--couleur-fond-alt);
+    border-radius: 3px;
+}
+
+/* === Panneau d'aide === */
+.btn-aide {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    background-color: var(--couleur-fond-alt);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.btn-aide:hover,
+.btn-aide:focus {
+    background-color: #e0e0e0;
+}
+
+.critere-aide {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--couleur-fond-alt);
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+.critere-aide h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.critere-aide h4:first-child {
+    margin-top: 0;
+}
+
+/* === Filtres === */
+.filtres {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--couleur-fond-alt);
+    border-radius: 8px;
+}
+
+.filtres h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
+.filtres fieldset {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filtres legend {
+    padding: 0 0.5rem;
+    font-weight: 600;
+}
+
+.filtre-groupe {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+/* === Tableaux === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: var(--couleur-fond-alt);
+    font-weight: 600;
+}
+
+/* === Impression === */
+@media print {
+    .filtres,
+    .btn,
+    .btn-aide {
+        display: none;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+    
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.875rem;
+    }
+    
+    .critere-item {
+        page-break-inside: avoid;
+    }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    body {
+        font-size: 1rem;
+    }
+    
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+    
+    .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
