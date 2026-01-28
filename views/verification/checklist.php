@@ -7,7 +7,8 @@ use yii\helpers\Url;
 /* @var $contenu app\models\Contenu */
 /* @var $categories app\models\Categorie[] */
 /* @var $verifications array */
-   $this->registerJsFile('@web/js/checklist.js', ['depends' => [\yii\web\JqueryAsset::class]]);
+
+$this->registerJsFile('@web/js/checklist.js', ['depends' => [\yii\web\JqueryAsset::class]]);
 
 $this->title = 'Vérification : ' . Html::encode($contenu->titre);
 $this->params['breadcrumbs'][] = ['label' => 'Contenus', 'url' => ['contenu/index']];
@@ -22,183 +23,211 @@ $verifies = count(array_filter($verifications, function($v) {
 $progression = $total > 0 ? round(($verifies / $total) * 100) : 0;
 ?>
 
+<!-- Skip Link -->
 <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
-<div class="verification-checklist">
-    
-    <!-- En-tête accessible -->
+<!-- Toggle Thème -->
+<button type="button"
+        class="theme-toggle"
+        aria-label="Basculer le thème sombre/clair"
+        title="Basculer le thème (raccourci: t)">
+    <span class="icon-sun" aria-hidden="true">&#9728;</span>
+    <span class="icon-moon" aria-hidden="true">&#9790;</span>
+</button>
+
+<div class="checklist-container">
+
+    <!-- En-tête -->
     <header class="checklist-header">
         <h1><?= Html::encode($this->title) ?></h1>
-        
+
         <?php if ($contenu->url): ?>
         <p class="contenu-url">
-            <strong class="label">URL du contenu :</strong>
+            <strong>URL :</strong>
             <?= Html::a(Html::encode($contenu->url), $contenu->url, [
                 'target' => '_blank',
                 'rel' => 'noopener noreferrer',
-                'title' => 'Ouvrir le contenu dans un nouvel onglet'
             ]) ?>
+            <span class="visually-hidden">(s'ouvre dans un nouvel onglet)</span>
         </p>
         <?php endif; ?>
-        
-        <!-- Barre de progression accessible -->
+
+        <!-- Barre de progression -->
         <div class="progression" role="region" aria-label="Progression de la vérification">
-            <p id="progression-label">
-                <strong>Progression :</strong> 
-                <?= $verifies ?> critères vérifiés sur <?= $total ?> 
-                (<?= $progression ?>%)
-            </p>
-            <div class="barre-progression" role="progressbar" 
-                 aria-valuenow="<?= $progression ?>" 
-                 aria-valuemin="0" 
+            <div class="progression-label">
+                <strong>Progression</strong>
+                <span class="progression-stats" id="progression-stats">
+                    <?= $verifies ?>/<?= $total ?> (<?= $progression ?>%)
+                </span>
+            </div>
+            <div class="barre-progression"
+                 role="progressbar"
+                 aria-valuenow="<?= $progression ?>"
+                 aria-valuemin="0"
                  aria-valuemax="100"
-                 aria-labelledby="progression-label">
-                <div class="barre-remplie" style="width: <?= $progression ?>%">
-                    <?= $progression ?>%
-                </div>
+                 aria-label="<?= $progression ?>% complété">
+                <div class="barre-remplie" style="width: <?= $progression ?>%"></div>
             </div>
         </div>
     </header>
 
-    <!-- Filtres accessibles -->
-    <aside class="filtres" role="search" aria-label="Filtres de la checklist">
-        <h2>Filtrer les critères</h2>
-        
-        <fieldset>
-            <legend>Par priorité</legend>
-            <div class="filtre-groupe">
+    <!-- Toolbar Filtres (ARIA Pattern) -->
+    <div class="filtres-toolbar" role="toolbar" aria-label="Filtres des critères">
+
+        <!-- Filtres par priorité -->
+        <div class="filtres-groupe" role="group" aria-label="Filtrer par priorité">
+            <span class="filtres-groupe-label" id="label-priorites">Priorité :</span>
+
+            <label class="filtre-pill filtre-active" data-priorite="critique">
                 <?= Html::checkbox('filtre-critique', true, [
                     'id' => 'filtre-critique',
                     'class' => 'filtre-checkbox',
-                    'aria-label' => 'Afficher les critères critiques'
                 ]) ?>
-                <?= Html::label('🔴 Critique', 'filtre-critique') ?>
-            </div>
-            <div class="filtre-groupe">
+                <span>Critique</span>
+            </label>
+
+            <label class="filtre-pill filtre-active" data-priorite="importante">
                 <?= Html::checkbox('filtre-importante', true, [
                     'id' => 'filtre-importante',
                     'class' => 'filtre-checkbox',
-                    'aria-label' => 'Afficher les critères importants'
                 ]) ?>
-                <?= Html::label('🟠 Importante', 'filtre-importante') ?>
-            </div>
-            <div class="filtre-groupe">
+                <span>Importante</span>
+            </label>
+
+            <label class="filtre-pill filtre-active" data-priorite="recommandee">
                 <?= Html::checkbox('filtre-recommandee', true, [
                     'id' => 'filtre-recommandee',
                     'class' => 'filtre-checkbox',
-                    'aria-label' => 'Afficher les critères recommandés'
                 ]) ?>
-                <?= Html::label('🟢 Recommandée', 'filtre-recommandee') ?>
-            </div>
-        </fieldset>
+                <span>Recommandée</span>
+            </label>
+        </div>
 
-        <fieldset>
-            <legend>Par statut</legend>
-            <div class="filtre-groupe">
+        <!-- Filtres par statut -->
+        <div class="filtres-groupe" role="group" aria-label="Filtrer par statut">
+            <span class="filtres-groupe-label" id="label-statuts">Statut :</span>
+
+            <label class="filtre-pill filtre-active">
                 <?= Html::checkbox('filtre-a-verifier', true, [
                     'id' => 'filtre-a-verifier',
                     'class' => 'filtre-checkbox',
-                    'aria-label' => 'Afficher les critères à vérifier'
                 ]) ?>
-                <?= Html::label('🔄 À vérifier', 'filtre-a-verifier') ?>
-            </div>
-            <div class="filtre-groupe">
+                <span>À vérifier</span>
+            </label>
+
+            <label class="filtre-pill filtre-active">
                 <?= Html::checkbox('filtre-non-conforme', true, [
                     'id' => 'filtre-non-conforme',
                     'class' => 'filtre-checkbox',
-                    'aria-label' => 'Afficher les critères non conformes'
                 ]) ?>
-                <?= Html::label('❌ Non conforme', 'filtre-non-conforme') ?>
-            </div>
-        </fieldset>
-    </aside>
+                <span>Non conforme</span>
+            </label>
 
-    <!-- Liste des critères -->
+            <label class="filtre-pill filtre-active">
+                <?= Html::checkbox('filtre-conforme', true, [
+                    'id' => 'filtre-conforme',
+                    'class' => 'filtre-checkbox',
+                ]) ?>
+                <span>Conforme</span>
+            </label>
+
+            <label class="filtre-pill filtre-active">
+                <?= Html::checkbox('filtre-non-applicable', true, [
+                    'id' => 'filtre-non-applicable',
+                    'class' => 'filtre-checkbox',
+                ]) ?>
+                <span>N/A</span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Contenu principal -->
     <main id="main-content">
-        <?php foreach ($categories as $categorie): ?>
-        
-        <section class="categorie" id="categorie-<?= $categorie->id ?>" 
-                 data-categorie-id="<?= $categorie->id ?>">
-            
-            <h2><?= Html::encode($categorie->code . ' ' . $categorie->nom) ?></h2>
-            
-            <ul class="liste-criteres" role="list">
-                <?php foreach ($categorie->criteres as $critere): 
-                    $verification = $verifications[$critere->id] ?? null;
-                ?>
-                
-                <li class="critere-item <?= $critere->getPrioriteClass() ?>" 
-                    data-critere-id="<?= $critere->id ?>"
-                    data-priorite="<?= $critere->priorite ?>"
-                    data-statut="<?= $verification ? $verification->statut : 'a_verifier' ?>">
-                    
-                    <?= $this->render('_critere-item', [
-                        'critere' => $critere,
-                        'verification' => $verification,
-                        'contenu' => $contenu,
-                    ]) ?>
-                    
-                </li>
-                
-                <?php endforeach; ?>
-            </ul>
-            
-        </section>
-        
-        <?php endforeach; ?>
+
+        <!-- Accordion des catégories (ARIA Pattern) -->
+        <div class="accordion">
+            <?php foreach ($categories as $index => $categorie):
+                $panelId = 'panel-categorie-' . $categorie->id;
+                $headerId = 'header-categorie-' . $categorie->id;
+                $criteresCount = count($categorie->criteres);
+            ?>
+
+            <div class="accordion-item" data-categorie-id="<?= $categorie->id ?>">
+
+                <!-- Accordion Header -->
+                <h2 class="accordion-header">
+                    <button type="button"
+                            class="accordion-trigger"
+                            id="<?= $headerId ?>"
+                            aria-expanded="<?= $index === 0 ? 'true' : 'false' ?>"
+                            aria-controls="<?= $panelId ?>">
+                        <span class="accordion-title">
+                            <?= Html::encode($categorie->code . ' ' . $categorie->nom) ?>
+                        </span>
+                        <span class="accordion-meta">
+                            <span class="accordion-count"><?= $criteresCount ?>/<?= $criteresCount ?> critères</span>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                            </svg>
+                        </span>
+                    </button>
+                </h2>
+
+                <!-- Accordion Panel -->
+                <div id="<?= $panelId ?>"
+                     class="accordion-panel"
+                     role="region"
+                     aria-labelledby="<?= $headerId ?>"
+                     <?= $index !== 0 ? 'hidden' : '' ?>>
+
+                    <div class="accordion-panel-content">
+                        <ul class="liste-criteres" role="list">
+                            <?php foreach ($categorie->criteres as $critere):
+                                $verification = $verifications[$critere->id] ?? null;
+                            ?>
+
+                            <li class="critere-item"
+                                data-critere-id="<?= $critere->id ?>"
+                                data-priorite="<?= Html::encode($critere->priorite) ?>"
+                                data-statut="<?= $verification ? Html::encode($verification->statut) : 'a_verifier' ?>">
+
+                                <?= $this->render('_critere-item', [
+                                    'critere' => $critere,
+                                    'verification' => $verification,
+                                    'contenu' => $contenu,
+                                ]) ?>
+
+                            </li>
+
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <?php endforeach; ?>
+        </div>
+
     </main>
 
-    <!-- Actions globales -->
+    <!-- Footer -->
     <footer class="checklist-footer">
-        <?= Html::a('📊 Voir le résumé', ['contenu/view', 'id' => $contenu->id], [
+        <?= Html::a('Voir le résumé', ['contenu/view', 'id' => $contenu->id], [
             'class' => 'btn btn-primary',
-            'aria-label' => 'Voir le résumé de la vérification'
         ]) ?>
-        
-        <?= Html::a('← Retour aux contenus', ['contenu/index'], [
+
+        <?= Html::a('Retour aux contenus', ['contenu/index'], [
             'class' => 'btn btn-secondary'
         ]) ?>
     </footer>
 
+    <!-- Aide raccourcis clavier -->
+    <div class="keyboard-help" aria-hidden="true">
+        <kbd>j</kbd>/<kbd>k</kbd> naviguer ·
+        <kbd>1</kbd>-<kbd>4</kbd> statut ·
+        <kbd>h</kbd> aide ·
+        <kbd>?</kbd> tous les raccourcis
+    </div>
+
 </div>
-
-<?php
-// JavaScript accessible pour les filtres
-$this->registerJs("
-// Gestion des filtres
-document.querySelectorAll('.filtre-checkbox').forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        appliquerFiltres();
-    });
-});
-
-function appliquerFiltres() {
-    const prioritesFiltrees = {
-        critique: document.getElementById('filtre-critique').checked,
-        importante: document.getElementById('filtre-importante').checked,
-        recommandee: document.getElementById('filtre-recommandee').checked
-    };
-    
-    const statutsFiltres = {
-        'a_verifier': document.getElementById('filtre-a-verifier').checked,
-        'non_conforme': document.getElementById('filtre-non-conforme').checked
-    };
-    
-    document.querySelectorAll('.critere-item').forEach(function(item) {
-        const priorite = item.getAttribute('data-priorite');
-        const statut = item.getAttribute('data-statut');
-        
-        const prioriteVisible = prioritesFiltrees[priorite];
-        const statutVisible = statutsFiltres[statut] !== undefined ? statutsFiltres[statut] : true;
-        
-        if (prioriteVisible && statutVisible) {
-            item.style.display = '';
-            item.removeAttribute('aria-hidden');
-        } else {
-            item.style.display = 'none';
-            item.setAttribute('aria-hidden', 'true');
-        }
-    });
-}
-", \yii\web\View::POS_READY);
-?>

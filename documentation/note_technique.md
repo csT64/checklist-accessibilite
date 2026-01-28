@@ -77,6 +77,46 @@ Application web Yii2 permettant aux créateurs de contenu de vérifier la confor
 
 ---
 
+## Ressources et Documentation Accessibilité
+
+### Patterns ARIA (W3C)
+
+| Ressource | URL | Description |
+|-----------|-----|-------------|
+| ARIA Authoring Practices Guide | https://www.w3.org/WAI/ARIA/apg/ | Guide complet des bonnes pratiques ARIA |
+| ARIA Patterns | https://www.w3.org/WAI/ARIA/apg/patterns/ | Catalogue des patterns d'interface accessibles |
+
+### Composants Inclusifs
+
+| Ressource | URL | Description |
+|-----------|-----|-------------|
+| Inclusive Components | https://inclusive-components.design/ | Patterns de composants inclusifs par Heydon Pickering |
+
+### Patterns utilisés dans ce projet
+
+| Pattern | Usage | Documentation |
+|---------|-------|---------------|
+| Accordion | Catégories de critères repliables | [APG Accordion](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) |
+| Disclosure | Panneaux d'aide dépliables | [APG Disclosure](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/) |
+| Radio Group | Sélection du statut de conformité | [APG Radio Group](https://www.w3.org/WAI/ARIA/apg/patterns/radio/) |
+| Alert | Messages de sauvegarde | [APG Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/) |
+| Toolbar | Barre de filtres | [APG Toolbar](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/) |
+
+### Raccourcis clavier
+
+| Touche | Action |
+|--------|--------|
+| `j` / `k` | Critère suivant / précédent |
+| `1` | Marquer Conforme |
+| `2` | Marquer Non conforme |
+| `3` | Marquer Non applicable |
+| `4` | Marquer À vérifier |
+| `h` | Ouvrir/fermer l'aide du critère courant |
+| `Échap` | Fermer panneau ouvert |
+| `t` | Basculer thème clair/sombre |
+
+---
+
 ## Workflow Git : Synchronisation Claude / Local
 
 ### Principe
