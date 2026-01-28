@@ -149,62 +149,85 @@ class VerificationController extends Controller
      *
      * @return array
      */
-    public function actionQuickSave()
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        $request = Yii::$app->request;
-        
-        if (!$request->isAjax || !$request->isPost) {
-            return ['success' => false, 'message' => 'Requête invalide.'];
-        }
-        
-        $contenu_id = $request->post('contenu_id');
-        $critere_id = $request->post('critere_id');
-        $statut = $request->post('statut');
-        $commentaire = $request->post('commentaire', '');
-        
-        // Trouver ou créer la vérification
-        $verification = Verification::find()
-            ->where([
-                'contenu_id' => $contenu_id,
-                'critere_id' => $critere_id
-            ])
-            ->one();
-        
-        if (!$verification) {
-            $verification = new Verification([
-                'contenu_id' => $contenu_id,
-                'critere_id' => $critere_id,
-            ]);
-        }
-        
-        $verification->statut = $statut;
-        $verification->commentaire = $commentaire;
-        $verification->verificateur_id = Yii::$app->user->id;
-        
-        if ($verification->save()) {
-            // Récupérer les stats mises à jour
-            $contenu = Contenu::findOne($contenu_id);
-            $stats = $contenu ? $contenu->getStatistiques() : null;
-            
-            return [
-                'success' => true,
-                'message' => 'Enregistré',
-                'verification' => [
-                    'id' => $verification->id,
-                    'statut' => $verification->statut,
-                    'statut_label' => $verification->getStatutLabel(),
-                ],
-                'stats' => $stats,
-            ];
-        }
-        
+public function actionQuickSave()
+{
+    // Forcer la réponse en JSON
+    Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    
+    $request = Yii::$app->request;
+    
+    // Accepter les requêtes POST ET AJAX
+    if (!$request->isPost) {
         return [
-            'success' => false,
-            'message' => 'Erreur lors de l\'enregistrement.',
-            'errors' => $verification->errors,
+            'success' => false, 
+            'message' => 'Seules les requêtes POST sont acceptées.'
         ];
     }
+    
+    // Récupérer les paramètres
+    $contenu_id = $request->post('contenu_id');
+    $critere_id = $request->post('critere_id');
+    $statut = $request->post('statut');
+    $commentaire = $request->post('commentaire', '');
+    
+    // Validation basique
+    if (!$contenu_id || !$critere_id || !$statut) {
+        return [
+            'success' => false,
+            'message' => 'Paramètres manquants (contenu_id, critere_id ou statut).',
+            'received' => [
+                'contenu_id' => $contenu_id,
+                'critere_id' => $critere_id,
+                'statut' => $statut,
+            ]
+        ];
+    }
+    
+    // Trouver ou créer la vérification
+    $verification = Verification::find()
+        ->where([
+            'contenu_id' => $contenu_id,
+            'critere_id' => $critere_id
+        ])
+        ->one();
+    
+    if (!$verification) {
+        $verification = new Verification([
+            'contenu_id' => $contenu_id,
+            'critere_id' => $critere_id,
+        ]);
+    }
+    
+    // Mettre à jour
+    $verification->statut = $statut;
+    $verification->commentaire = $commentaire;
+    $verification->verificateur_id = Yii::$app->user->id;
+    
+    if ($verification->save()) {
+        // Récupérer les stats mises à jour
+        $contenu = Contenu::findOne($contenu_id);
+        $stats = $contenu ? $contenu->getStatistiques() : null;
+        
+        return [
+            'success' => true,
+            'message' => 'Enregistré',
+            'verification' => [
+                'id' => $verification->id,
+                'statut' => $verification->statut,
+                'statut_label' => $verification->getStatutLabel(),
+            ],
+            'stats' => $stats,
+        ];
+    }
+    
+    return [
+        'success' => false,
+        'message' => 'Erreur lors de l\'enregistrement.',
+        'errors' => $verification->errors,
+    ];
+}
+
+
 
     /**
      * Trouve un contenu ou lance une exception
