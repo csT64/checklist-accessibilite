@@ -60,6 +60,23 @@ Application web Yii2 permettant aux créateurs de contenu de vérifier la confor
 
 ---
 
+## Conception
+
+### Environnement de développement local
+
+| Page | URL |
+|------|-----|
+| Checklist de vérification | http://checklist-accessibilite.local/index.php?r=verification%2Fchecklist&id=1 |
+
+### Routes principales
+
+| Route | Description |
+|-------|-------------|
+| `verification/checklist` | Interface de vérification des critères pour un contenu |
+| `verification/quick-save` | Endpoint AJAX pour sauvegarder une vérification |
+
+---
+
 ## Workflow Git : Synchronisation Claude / Local
 
 ### Principe
