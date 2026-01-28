@@ -122,12 +122,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const critereId = this.getAttribute('data-critere-id');
             const aidePanel = document.getElementById('aide-' + critereId);
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            
+
             if (isExpanded) {
-                aidePanel.hidden = true;
+                aidePanel.setAttribute('hidden', '');
                 this.setAttribute('aria-expanded', 'false');
             } else {
-                aidePanel.hidden = false;
+                aidePanel.removeAttribute('hidden');
                 this.setAttribute('aria-expanded', 'true');
                 // Déplacer le focus dans le panneau
                 aidePanel.focus();
