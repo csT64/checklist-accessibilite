@@ -96,7 +96,6 @@ Chaque règle est pondérée selon son impact sur l'accessibilité.
 ## 5.1 Texte et rédaction
 
 ### Langage clair et compréhensible
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 3.1.3, 3.1.5 (info)
 - **RGAA** : 10.1, 10.4
@@ -114,7 +113,6 @@ Chaque règle est pondérée selon son impact sur l'accessibilité.
 ---
 
 ### Information non portée uniquement par la forme
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.3.3
 - **RGAA** : 10.9
@@ -132,7 +130,6 @@ Chaque règle est pondérée selon son impact sur l'accessibilité.
 ---
 
 ### Usage limité des majuscules
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 1.4.8 (info)
 
@@ -143,7 +140,6 @@ Chaque règle est pondérée selon son impact sur l'accessibilité.
 ---
 
 ### Langue des passages en langue étrangère (RAWeb)
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟢 Recommandée
 - **WCAG** : 3.1.2
 - **RAWeb** : 8.7
@@ -159,7 +155,6 @@ Chaque règle est pondérée selon son impact sur l'accessibilité.
 ## 5.2 Structure et hiérarchie
 
 ### Hiérarchie correcte des titres
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.3.1, 2.4.6
 - **RGAA** : 9.1, 9.2
@@ -176,7 +171,6 @@ Chaque règle est pondérée selon son impact sur l'accessibilité.
 ---
 
 ### Listes correctement balisées
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 1.3.1
 - **RGAA** : 9.3
@@ -194,7 +188,6 @@ Chaque règle est pondérée selon son impact sur l'accessibilité.
 ## 5.3 Liens
 
 ### Texte de lien explicite
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 2.4.4
 - **RGAA** : 6.1
@@ -232,7 +225,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Indication du type de lien
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 3.2.2
 - **RGAA** : 6.2
@@ -248,7 +240,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Liens images et intitulés
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 2.4.4, 1.1.1
 - **RGAA** : 6.1
@@ -266,7 +257,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ## 5.4 Images et visuels
 
 ### Texte alternatif pertinent
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.1.1
 - **RGAA** : 1.1, 1.2
@@ -284,7 +274,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Texte présent dans l'image
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.4.5
 - **RGAA** : 3.1
@@ -300,7 +289,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Images complexes et description détaillée
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 1.1.1
 - **RGAA** : 1.6, 1.7
@@ -318,7 +306,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ## 5.5 Tableaux
 
 ### Usage pertinent des tableaux
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 1.3.1
 - **RGAA** : 5.1
@@ -330,7 +317,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### En-têtes de tableaux
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.3.1
 - **RGAA** : 5.6
@@ -342,7 +328,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Titre de tableau
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 1.3.1
 - **RGAA** : 5.4
@@ -354,7 +339,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Tableaux de données complexes (RAWeb)
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟢 Recommandée
 - **WCAG** : 1.3.1
 - **RAWeb** : 5.7
@@ -370,7 +354,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ## 5.6 Couleurs et mise en forme
 
 ### Contraste du texte
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.4.3
 - **RGAA** : 3.2
@@ -388,7 +371,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Information indépendante de la couleur
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.4.1
 - **RGAA** : 3.3
@@ -404,7 +386,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Mise en forme du texte
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟢 Recommandée
 - **WCAG** : 1.4.8
 
@@ -418,7 +399,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ## 5.7 Médias audio et vidéo
 
 ### Sous-titres pour les vidéos
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.2.2
 - **RGAA** : 4.1
@@ -430,7 +410,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Transcription des audios
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 1.2.1
 - **RGAA** : 4.3
@@ -442,7 +421,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Audiodescription pour les vidéos
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 1.2.5
 - **RGAA** : 4.5
@@ -454,7 +432,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Contrôle de lecture
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.4.2
 - **RGAA** : 4.10
@@ -468,7 +445,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ## 5.8 Formulaires
 
 ### Étiquettes (labels) présentes et pertinentes
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 3.3.2, 1.3.1, 2.4.6
 - **RGAA** : 11.1, 11.2
@@ -489,7 +465,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Indication des champs obligatoires
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 3.3.2
 - **RGAA** : 11.10
@@ -510,7 +485,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Format de données attendu
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 3.3.2
 - **RGAA** : 11.10
@@ -528,7 +502,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Regroupement des champs de même nature
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.3.1
 - **RGAA** : 11.5, 11.6
@@ -547,7 +520,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Messages d'erreur explicites et associés
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 3.3.1, 3.3.3
 - **RGAA** : 11.10, 11.11
@@ -572,7 +544,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Récapitulatif des erreurs
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 3.3.1
 - **RGAA** : 11.10
@@ -591,7 +562,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Confirmation pour actions importantes
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 3.3.4, 3.3.6
 - **RGAA** : 11.13
@@ -610,7 +580,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Aide à la saisie et autocomplétion (RAWeb)
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟢 Recommandée
 - **WCAG** : 1.3.5
 - **RGAA** : 11.13
@@ -629,7 +598,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Intitulés de boutons explicites
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 2.4.6
 - **RGAA** : 11.9
@@ -649,7 +617,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Placeholder : usage et limites
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 3.3.2
 
@@ -670,7 +637,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Navigation clavier dans le formulaire
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 2.1.1, 2.4.7
 - **RGAA** : 11.1
@@ -687,7 +653,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ## 5.9 Documents et contenus intégrés
 
 ### Documents accessibles
-- **Profil** : Producteur de contenus
 - **Priorité** : 🔴 Critique
 - **WCAG** : 1.1.1, 1.3.1
 - **RGAA** : 13.3
@@ -704,7 +669,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Contenus intégrés (iframe, widgets)
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟠 Importante
 - **WCAG** : 2.4.1, 4.1.2
 - **RGAA** : 2.1, 2.2
@@ -717,7 +681,6 @@ Note : Signaler ce besoin à l'équipe technique.
 ---
 
 ### Contenus en téléchargement alternatifs (RAWeb)
-- **Profil** : Producteur de contenus
 - **Priorité** : 🟢 Recommandée
 - **RAWeb** : 13.7
 

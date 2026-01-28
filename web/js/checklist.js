@@ -753,11 +753,101 @@
         }, 100);
     }
 
+    // ===========================================
+    // Accordion Controls (Expand/Collapse All)
+    // ===========================================
+
+    function initAccordionControls() {
+        const expandAllBtn = document.getElementById('btn-expand-all');
+        const collapseAllBtn = document.getElementById('btn-collapse-all');
+
+        if (expandAllBtn) {
+            expandAllBtn.addEventListener('click', expandAllAccordions);
+        }
+
+        if (collapseAllBtn) {
+            collapseAllBtn.addEventListener('click', collapseAllAccordions);
+        }
+    }
+
+    function expandAllAccordions() {
+        document.querySelectorAll('.accordion-trigger').forEach(function(trigger) {
+            const panelId = trigger.getAttribute('aria-controls');
+            const panel = document.getElementById(panelId);
+            if (panel) {
+                setAccordionState(trigger, panel, true);
+            }
+        });
+        saveAccordionState();
+        announceToScreenReader('Toutes les catégories sont dépliées');
+    }
+
+    function collapseAllAccordions() {
+        document.querySelectorAll('.accordion-trigger').forEach(function(trigger) {
+            const panelId = trigger.getAttribute('aria-controls');
+            const panel = document.getElementById(panelId);
+            if (panel) {
+                setAccordionState(trigger, panel, false);
+            }
+        });
+        saveAccordionState();
+        announceToScreenReader('Toutes les catégories sont repliées');
+    }
+
+    // ===========================================
+    // Mobile Menu
+    // ===========================================
+
+    function initMobileMenu() {
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('.main-nav');
+
+        if (toggle && nav) {
+            toggle.addEventListener('click', function() {
+                const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+                toggle.setAttribute('aria-expanded', (!isExpanded).toString());
+                nav.classList.toggle('open');
+            });
+
+            // Fermer le menu en cliquant à l'extérieur
+            document.addEventListener('click', function(e) {
+                if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    nav.classList.remove('open');
+                }
+            });
+        }
+    }
+
+    // ===========================================
+    // Alert Close Buttons
+    // ===========================================
+
+    function initAlertCloseButtons() {
+        document.querySelectorAll('.alert-close').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const alert = btn.closest('.alert');
+                if (alert) {
+                    alert.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // Initialiser les nouveaux composants
+    document.addEventListener('DOMContentLoaded', function() {
+        initAccordionControls();
+        initMobileMenu();
+        initAlertCloseButtons();
+    });
+
     // Exposer certaines fonctions globalement pour debug
     window.ChecklistA11y = {
         toggleTheme: toggleTheme,
         applyFilters: applyFilters,
-        navigateToCritere: navigateToCritere
+        navigateToCritere: navigateToCritere,
+        expandAllAccordions: expandAllAccordions,
+        collapseAllAccordions: collapseAllAccordions
     };
 
 })();

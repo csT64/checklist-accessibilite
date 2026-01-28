@@ -30,7 +30,6 @@ $prioriteLabel = $prioriteLabels[$critere->priorite] ?? $critere->priorite;
         </span>
 
         <h3 id="critere-title-<?= $critereId ?>">
-            <span class="critere-code"><?= Html::encode($critere->code) ?></span>
             <?= Html::encode($critere->titre) ?>
         </h3>
     </header>
