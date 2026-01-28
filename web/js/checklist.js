@@ -3,9 +3,9 @@
  * Gestion de la sauvegarde AJAX des vérifications
  */
 
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     'use strict';
-    
+
     // Récupérer le token CSRF depuis les meta tags
     function getCsrfToken() {
         const meta = document.querySelector('meta[name="csrf-token"]');
@@ -172,4 +172,4 @@
     }
     
     console.log('✅ Checklist JavaScript chargé');
-})();
+});
