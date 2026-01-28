@@ -123,16 +123,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const aidePanel = document.getElementById('aide-' + critereId);
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
-            alert('Clic détecté!\ncritereId: ' + critereId + '\naidePanel trouvé: ' + (aidePanel ? 'OUI' : 'NON') + '\nisExpanded: ' + isExpanded);
-
             if (isExpanded) {
                 aidePanel.setAttribute('hidden', '');
                 this.setAttribute('aria-expanded', 'false');
-                alert('Panel masqué');
             } else {
                 aidePanel.removeAttribute('hidden');
                 this.setAttribute('aria-expanded', 'true');
-                alert('Panel affiché - hidden retiré: ' + !aidePanel.hasAttribute('hidden'));
                 // Déplacer le focus dans le panneau
                 aidePanel.focus();
             }
