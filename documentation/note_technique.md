@@ -60,4 +60,48 @@ Application web Yii2 permettant aux créateurs de contenu de vérifier la confor
 
 ---
 
+## Workflow Git : Synchronisation Claude / Local
+
+### Principe
+
+Claude travaille sur la branche : **`claude/access-github-repo-eLj49`**
+
+### Récupérer les modifications de Claude (sur votre poste local)
+
+**Première fois** (récupérer la branche) :
+```bash
+git fetch origin
+git checkout claude/access-github-repo-eLj49
+```
+
+**Les fois suivantes** (mettre à jour) :
+```bash
+git pull origin claude/access-github-repo-eLj49
+```
+
+### Envoyer vos modifications vers Claude
+
+Si vous faites des modifications locales et voulez que Claude les voie :
+```bash
+git add .
+git commit -m "Description de vos modifications"
+git push origin claude/access-github-repo-eLj49
+```
+
+Ensuite, demandez à Claude de faire un `git pull` pour récupérer vos changements.
+
+### Résumé du flux
+
+```
+[Vous]                              [Claude]
+  |                                    |
+  |  <-- git pull ------------------   | (Claude pousse)
+  |                                    |
+  |  -- git push ------------------>   | (Vous poussez)
+  |                                    |
+  |  (demandez à Claude de pull)       | git pull
+```
+
+---
+
 *Document créé par Claude - Test de synchronisation Git*
